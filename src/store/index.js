@@ -8,7 +8,8 @@ export default new Vuex.Store({
   // 创建store数据源，提供唯一公共数据
   state: {
     count: 0
-  },
+  }, // state END
+
   // mutations 用于变更 Store 中的数据4
   // 只用 mutations 中定义的函数，才有权利修改 state 中的数据
   mutations: {
@@ -31,7 +32,8 @@ export default new Vuex.Store({
     subN (state, step) {
       state.count -= step
     }
-  },
+  }, // mutations END
+
   // 只用于处理异步任务
   // 如果通过异步操作变更数据，必须通过 Action，而不能使用 Mutation，但是在 Action 中还是要通过触发 Mutation 的方式间接变更数据。
   actions: {
@@ -49,8 +51,19 @@ export default new Vuex.Store({
         // 必须通过 context.commit() 触发某个 mutation 对象才行
         context.commit('addN', step)
       }, 1000)
+    },
+    subAsync (context) {
+      setTimeout(() => {
+        context.commit('sub')
+      }, 1000)
+    },
+    subAsyncN (context, step) {
+      setTimeout(() => {
+        context.commit('subN', step)
+      }, 1000)
     }
-  },
+  }, // actions END
+
   modules: {
   }
 })

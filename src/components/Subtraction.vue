@@ -3,13 +3,17 @@
     <h3>当前最新的count值为: {{ count }}</h3>
     <button @click="handleSub"> -1 </button>
     <button @click="handleSubN(step)"> -{{ step }} </button>
+    <button @click="subN(step)"> subN -{{ step }} </button>
+    <button @click="handleSubAsyncN"> async -1 </button>
+    <!-- 直接调用 -->
+    <button @click="subAsync"> subAsync -1 </button>
   </div>
 </template>
 
 <script>
 // 组件访问 State 中数据的第二种方式
 // 1. 从 vuex 中按需导入 mapState 函数
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -28,6 +32,10 @@ export default {
     },
     handleSubN (step) {
       this.subN(step)
+    },
+    ...mapActions(['subAsync', 'subAsyncN']),
+    handleSubAsyncN () {
+      this.subAsync()
     }
   }
 }
