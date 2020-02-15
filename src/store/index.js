@@ -19,6 +19,12 @@ export default new Vuex.Store({
     addN (state, step) {
       // 变更状态
       state.count += step
+    },
+    sub (state) {
+      state.count--
+    },
+    subN (state, step) {
+      state.count -= step
     }
   },
   actions: {
