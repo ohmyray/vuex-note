@@ -47,8 +47,6 @@ export default new Vuex.Store({
     },
     addAsyncN (context, step) {
       setTimeout(() => {
-        // 在 actions 中，不能直接修改 state 中的数据
-        // 必须通过 context.commit() 触发某个 mutation 对象才行
         context.commit('addN', step)
       }, 1000)
     },
