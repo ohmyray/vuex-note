@@ -2,7 +2,10 @@
   <div>
     <!-- 组件访问 State 中数据的第一种方式
     this.$store.state -->
-    <h3>当前最新的count值为: {{$store.state.count}}</h3>
+    <!-- <h3>当前最新的count值为: {{$store.state.count}}</h3> -->
+    <!-- 组件访问 getters 中数据的第一种方式
+    this.$store.getters -->
+    <h3>{{ $store.getters.showNum }}</h3>
     <button @click="handleAdd"> +1 </button>
     <button @click="handleAddN(step)"> +{{ step }} </button>
     <button @click="handleAddAsync"> async +1 </button>

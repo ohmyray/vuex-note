@@ -65,5 +65,12 @@ export default new Vuex.Store({
   }, // actions END
 
   modules: {
+  },
+
+  // 相当于计算属性
+  getters: {
+    showNum (state) {
+      return '当前最新的数量是：[' + state.count + ']'
+    }
   }
 })
