@@ -9,11 +9,16 @@ export default new Vuex.Store({
   state: {
     count: 0
   },
-  // mutations 用于变更 Store 中的数据
+  // mutations 用于变更 Store 中的数据4
+  // 只用 mutations 中定义的函数，才有权利修改 state 中的数据
   mutations: {
     add (state) {
       // 变更状态
       // console.log(state)
+      //  不要在 mutations 函数中执行异步操作
+      // setTimeout(() => {
+      //   state.count++
+      // }, 1000)
       state.count++
     },
     addN (state, step) {
@@ -27,7 +32,24 @@ export default new Vuex.Store({
       state.count -= step
     }
   },
+  // 只用于处理异步任务
+  // 如果通过异步操作变更数据，必须通过 Action，而不能使用 Mutation，但是在 Action 中还是要通过触发 Mutation 的方式间接变更数据。
   actions: {
+    // context（形参） 相当于 new 出来的 Vuex.Store 实例化对象
+    addAsync (context) {
+      setTimeout(() => {
+        // 在 actions 中，不能直接修改 state 中的数据
+        // 必须通过 context.commit() 触发某个 mutation 对象才行
+        context.commit('add')
+      }, 1000)
+    },
+    addAsyncN (context, step) {
+      setTimeout(() => {
+        // 在 actions 中，不能直接修改 state 中的数据
+        // 必须通过 context.commit() 触发某个 mutation 对象才行
+        context.commit('addN', step)
+      }, 1000)
+    }
   },
   modules: {
   }
